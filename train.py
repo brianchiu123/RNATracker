@@ -30,15 +30,19 @@ def train(opt, config, device, train_data, val_data):
     tb_writer = SummaryWriter(log_dir = run_dir)
 
     # write data info
+    data_desc = f"[ Using data in \"{opt.data}\"]"
     train_size = len(train_data['seqs'])
-    train_data_desc = f'[ Using training data in \"{opt.train_data}\"] \nTraining size : {train_size}'
+    train_data_desc = f'Training size : {train_size}'
     val_size = len(val_data['seqs'])
-    val_data_desc = f'[ Using validataion data in \"{opt.val_data}\"] \nValidataion size : {val_size}\n'
+    val_data_desc = f'Validataion size : {val_size}'
     length_desc = f'trim and pad to length {opt.max_length}\n'
+    print(data_desc)
     print(train_data_desc)
     print(val_data_desc)
     print(length_desc)
     with open(log_file_path, 'a+') as f:
+        f.write(data_desc)
+        f.write('\n')
         f.write(train_data_desc)
         f.write('\n')
         f.write(val_data_desc)
@@ -230,5 +234,5 @@ if __name__ == '__main__':
             train(opt, config, device, fold_train_data, fold_val_data)
     else:
         whole_data = load_cefra(opt.data)
-        train_seqs, train_labels, val_seqs, val_labels = train_test_split(whole_data['seqs'],whole_data['labels'],test_size=0.2, random_state=1)
+        train_seqs, val_seqs, train_labels, val_labels = train_test_split(whole_data['seqs'],whole_data['labels'],test_size=0.2, random_state=1)
         train(opt, config, device, {"seqs" : train_seqs, "labels" : train_labels}, {"seqs" : val_seqs, "labels" : val_labels})
