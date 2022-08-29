@@ -17,7 +17,7 @@ RNATracker aims to predict each RNA sequence belongs to which site in a cell (Cy
 | <img width="420" alt="Screen Shot 2022-08-29 at 11 20 35 AM" src="https://user-images.githubusercontent.com/75982405/187116478-03630088-a73c-4b79-9b19-9138286ebe0e.png">|<img width="312" alt="Screen Shot 2022-08-29 at 11 47 25 AM" src="https://user-images.githubusercontent.com/75982405/187119145-c18bea65-8094-4a6c-9397-4e26b6eeb8ba.png">|
 
 
-#### Datail of Each Layer
+#### Datail of Each Layer (actual implemation of this repo)
 
 ```
 RNATracker_model(
@@ -63,6 +63,11 @@ optional arguments:
   --fold FOLD               fold number(do not set if do not want), will use training data to run n-fold
   --full_length             use full length to train (batch_size will set to 1)
 ```
+
+## Result (of Cefra Dataset)
+#### Pearson Correlation Coefficient of each site
+
+#### Training / Validation loss 
 
 ## Reference
 [1] Yan Z, Lécuyer E, Blanchette M. Prediction of mRNA subcellular localization using deep recurrent neural networks. Bioinformatics. 2019 Jul 15;35(14):i333-i342. doi: 10.1093/bioinformatics/btz337. PMID: 31510698; PMCID: PMC6612824.
