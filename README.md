@@ -1,6 +1,6 @@
 PyTorch re-implementation of RNATracker [1] model.
 
-RNATracker aims to predict each RNA sequence belongs to which site in cell (Cytosol, Nuclear ...)
+RNATracker aims to predict each RNA sequence belongs to which site in a cell (Cytosol, Nuclear ...)
 
 <img width="422" alt="Screen Shot 2022-08-29 at 11 14 26 AM" src="https://user-images.githubusercontent.com/75982405/187116375-66cb2ef1-6f0b-4a02-80ec-7c36211081e1.png">
 
