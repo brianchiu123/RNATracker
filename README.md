@@ -99,7 +99,17 @@ log_file_name = log.txt
 <br>
 
 ## Result (of Cefra Dataset)
+
+training log is in `logs/exp0`
+
 #### Pearson Correlation Coefficient of each site
+|Site|PCC|
+|----|---|
+|Cytosol|0.7119|
+|Insoluble|0.6356|
+|Membrane|0.5675|
+|Nuclear|0.5575|
+|overall|0.6333|
 
 #### Training / Validation loss 
 ![螢幕快照 2022-08-29 下午2 28 12](https://user-images.githubusercontent.com/75982405/187137091-417bae00-49f0-4319-ab23-803d4ae7a581.png)
