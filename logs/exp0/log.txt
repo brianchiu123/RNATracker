@@ -1,0 +1,182 @@
+[ Using data in "data/Cefra/cefra.fa"]
+Training size : 9098
+Validataion size : 2275
+trim and pad to length 4000
+
+[ Training information ]
+output file directory : logs/exp0, batch size : 8, learning rate : 0.0001, total epochs : 100
+RNATracker_model(
+  (conv_block1): Sequential(
+    (0): Conv1d(4, 32, kernel_size=(10,), stride=(1,), bias=False)
+    (1): ReLU()
+    (2): MaxPool1d(kernel_size=3, stride=3, padding=0, dilation=1, ceil_mode=False)
+    (3): Dropout(p=0.25, inplace=False)
+  )
+  (conv_block2): Sequential(
+    (0): Conv1d(32, 32, kernel_size=(10,), stride=(1,), bias=False)
+    (1): ReLU()
+    (2): MaxPool1d(kernel_size=3, stride=3, padding=0, dilation=1, ceil_mode=False)
+    (3): Dropout(p=0.25, inplace=False)
+  )
+  (gru): GRU(32, 32, batch_first=True, bidirectional=True)
+  (attention): Attention(
+    (attention_w): Linear(in_features=64, out_features=50, bias=True)
+    (tanh): Tanh()
+    (attention_w2): Linear(in_features=50, out_features=1, bias=False)
+    (softmax): Softmax(dim=-1)
+  )
+  (acti): ReLU()
+  (output): Linear(in_features=64, out_features=4, bias=True)
+  (softmax): Softmax(dim=1)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    eps: 1e-08
+    foreach: None
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0
+)
+Epoch [1/100], Loss: 1.1469
+Epoch [2/100], Loss: 1.0232
+Epoch [3/100], Loss: 1.0016
+Epoch [4/100], Loss: 0.9941
+Epoch [5/100], Loss: 0.9842
+Val Loss=0.9476
+PCC:{'Cytosol': 0.6372, 'Insoluble': 0.5501, 'Membrane': 0.391, 'Nuclear': 0.4412, 'overall': 0.5303}
+Epoch [6/100], Loss: 0.9753
+Epoch [7/100], Loss: 0.9645
+Epoch [8/100], Loss: 0.9568
+Epoch [9/100], Loss: 0.9485
+Epoch [10/100], Loss: 0.9411
+Val Loss=0.9050
+PCC:{'Cytosol': 0.6495, 'Insoluble': 0.566, 'Membrane': 0.4666, 'Nuclear': 0.4724, 'overall': 0.5555}
+Epoch [11/100], Loss: 0.9360
+Epoch [12/100], Loss: 0.9303
+Epoch [13/100], Loss: 0.9229
+Epoch [14/100], Loss: 0.9197
+Epoch [15/100], Loss: 0.9160
+Val Loss=0.8713
+PCC:{'Cytosol': 0.6604, 'Insoluble': 0.5755, 'Membrane': 0.5091, 'Nuclear': 0.5002, 'overall': 0.5773}
+Epoch [16/100], Loss: 0.9096
+Epoch [17/100], Loss: 0.9081
+Epoch [18/100], Loss: 0.9064
+Epoch [19/100], Loss: 0.9012
+Epoch [20/100], Loss: 0.8988
+Val Loss=0.8463
+PCC:{'Cytosol': 0.6742, 'Insoluble': 0.5878, 'Membrane': 0.5331, 'Nuclear': 0.5179, 'overall': 0.5935}
+Epoch [21/100], Loss: 0.8933
+Epoch [22/100], Loss: 0.8890
+Epoch [23/100], Loss: 0.8891
+Epoch [24/100], Loss: 0.8818
+Epoch [25/100], Loss: 0.8822
+Val Loss=0.8376
+PCC:{'Cytosol': 0.6836, 'Insoluble': 0.5959, 'Membrane': 0.5385, 'Nuclear': 0.5232, 'overall': 0.5985}
+Epoch [26/100], Loss: 0.8794
+Epoch [27/100], Loss: 0.8744
+Epoch [28/100], Loss: 0.8707
+Epoch [29/100], Loss: 0.8703
+Epoch [30/100], Loss: 0.8697
+Val Loss=0.8316
+PCC:{'Cytosol': 0.6935, 'Insoluble': 0.6098, 'Membrane': 0.5432, 'Nuclear': 0.5307, 'overall': 0.6049}
+Epoch [31/100], Loss: 0.8645
+Epoch [32/100], Loss: 0.8645
+Epoch [33/100], Loss: 0.8599
+Epoch [34/100], Loss: 0.8574
+Epoch [35/100], Loss: 0.8546
+Val Loss=0.8249
+PCC:{'Cytosol': 0.6961, 'Insoluble': 0.6106, 'Membrane': 0.5482, 'Nuclear': 0.5361, 'overall': 0.607}
+Epoch [36/100], Loss: 0.8553
+Epoch [37/100], Loss: 0.8558
+Epoch [38/100], Loss: 0.8561
+Epoch [39/100], Loss: 0.8506
+Epoch [40/100], Loss: 0.8490
+Val Loss=0.8057
+PCC:{'Cytosol': 0.7017, 'Insoluble': 0.6148, 'Membrane': 0.5562, 'Nuclear': 0.5413, 'overall': 0.6176}
+Epoch [41/100], Loss: 0.8510
+Epoch [42/100], Loss: 0.8487
+Epoch [43/100], Loss: 0.8476
+Epoch [44/100], Loss: 0.8448
+Epoch [45/100], Loss: 0.8447
+Val Loss=0.8078
+PCC:{'Cytosol': 0.6989, 'Insoluble': 0.6151, 'Membrane': 0.555, 'Nuclear': 0.5391, 'overall': 0.6162}
+Epoch [46/100], Loss: 0.8440
+Epoch [47/100], Loss: 0.8412
+Epoch [48/100], Loss: 0.8415
+Epoch [49/100], Loss: 0.8396
+Epoch [50/100], Loss: 0.8404
+Val Loss=0.8073
+PCC:{'Cytosol': 0.7022, 'Insoluble': 0.6211, 'Membrane': 0.5531, 'Nuclear': 0.5365, 'overall': 0.6176}
+Epoch [51/100], Loss: 0.8408
+Epoch [52/100], Loss: 0.8386
+Epoch [53/100], Loss: 0.8343
+Epoch [54/100], Loss: 0.8343
+Epoch [55/100], Loss: 0.8336
+Val Loss=0.7971
+PCC:{'Cytosol': 0.7031, 'Insoluble': 0.6232, 'Membrane': 0.5547, 'Nuclear': 0.5476, 'overall': 0.6233}
+Epoch [56/100], Loss: 0.8339
+Epoch [57/100], Loss: 0.8304
+Epoch [58/100], Loss: 0.8305
+Epoch [59/100], Loss: 0.8308
+Epoch [60/100], Loss: 0.8310
+Val Loss=0.8060
+PCC:{'Cytosol': 0.7005, 'Insoluble': 0.6174, 'Membrane': 0.5606, 'Nuclear': 0.5437, 'overall': 0.6165}
+Epoch [61/100], Loss: 0.8286
+Epoch [62/100], Loss: 0.8307
+Epoch [63/100], Loss: 0.8268
+Epoch [64/100], Loss: 0.8265
+Epoch [65/100], Loss: 0.8256
+Val Loss=0.7903
+PCC:{'Cytosol': 0.7089, 'Insoluble': 0.6263, 'Membrane': 0.5686, 'Nuclear': 0.551, 'overall': 0.6263}
+Epoch [66/100], Loss: 0.8228
+Epoch [67/100], Loss: 0.8256
+Epoch [68/100], Loss: 0.8209
+Epoch [69/100], Loss: 0.8230
+Epoch [70/100], Loss: 0.8215
+Val Loss=0.7900
+PCC:{'Cytosol': 0.7049, 'Insoluble': 0.6283, 'Membrane': 0.5691, 'Nuclear': 0.5494, 'overall': 0.6268}
+Epoch [71/100], Loss: 0.8205
+Epoch [72/100], Loss: 0.8189
+Epoch [73/100], Loss: 0.8169
+Epoch [74/100], Loss: 0.8195
+Epoch [75/100], Loss: 0.8168
+Val Loss=0.7994
+PCC:{'Cytosol': 0.7104, 'Insoluble': 0.6287, 'Membrane': 0.5679, 'Nuclear': 0.5552, 'overall': 0.6216}
+Epoch [76/100], Loss: 0.8156
+Epoch [77/100], Loss: 0.8135
+Epoch [78/100], Loss: 0.8136
+Epoch [79/100], Loss: 0.8146
+Epoch [80/100], Loss: 0.8110
+Val Loss=0.8081
+PCC:{'Cytosol': 0.7064, 'Insoluble': 0.629, 'Membrane': 0.5512, 'Nuclear': 0.544, 'overall': 0.6172}
+Epoch [81/100], Loss: 0.8095
+Epoch [82/100], Loss: 0.8092
+Epoch [83/100], Loss: 0.8091
+Epoch [84/100], Loss: 0.8093
+Epoch [85/100], Loss: 0.8099
+Val Loss=0.7934
+PCC:{'Cytosol': 0.7108, 'Insoluble': 0.6327, 'Membrane': 0.5739, 'Nuclear': 0.5587, 'overall': 0.6252}
+Epoch [86/100], Loss: 0.8075
+Epoch [87/100], Loss: 0.8048
+Epoch [88/100], Loss: 0.8020
+Epoch [89/100], Loss: 0.8029
+Epoch [90/100], Loss: 0.8032
+Val Loss=0.7856
+PCC:{'Cytosol': 0.7084, 'Insoluble': 0.632, 'Membrane': 0.5659, 'Nuclear': 0.5514, 'overall': 0.6294}
+Epoch [91/100], Loss: 0.8049
+Epoch [92/100], Loss: 0.8023
+Epoch [93/100], Loss: 0.7981
+Epoch [94/100], Loss: 0.8006
+Epoch [95/100], Loss: 0.7978
+Val Loss=0.7923
+PCC:{'Cytosol': 0.7079, 'Insoluble': 0.6326, 'Membrane': 0.5621, 'Nuclear': 0.5545, 'overall': 0.6262}
+Epoch [96/100], Loss: 0.7980
+Epoch [97/100], Loss: 0.7956
+Epoch [98/100], Loss: 0.7943
+Epoch [99/100], Loss: 0.7964
+Epoch [100/100], Loss: 0.7959
+Val Loss=0.7787
+PCC:{'Cytosol': 0.7119, 'Insoluble': 0.6356, 'Membrane': 0.5675, 'Nuclear': 0.5575, 'overall': 0.6333}
