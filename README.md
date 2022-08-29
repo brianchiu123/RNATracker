@@ -63,6 +63,29 @@ optional arguments:
   --fold FOLD               fold number(do not set if do not want), will use training data to run n-fold
   --full_length             use full length to train (batch_size will set to 1)
 ```
+- default args of `epochs`, `batch_size`, `max_length` ... are the one used in original RNATracker.
+- every training will create a log folder under `logs`, will named `exp<number>`, or other log name if `log_name` option is given.
+- if you want to perform full length training (without padding and trimmimg to a fixed size `max_length`), you can set `full_length`, and the `batch_size` will automatically set to 1. 
+- you can restore and keep on last training by giving `weights`, epoch will start from the last time.
+- you can perform k-fold cross validation by setting `fold` option.
+
+#### config file
+
+in `config/setting.cfg`, there's some conventional option can be set. Include all log file name, folder name...
+
+```
+[model]
+num_classes = 4
+loc_name = Cytosol,Insoluble,Membrane,Nuclear
+
+[log]
+save_weights_per_epoch = 5
+eval_per_epoch = 5
+overall_log_dir = logs
+log_dir_prefix = exp
+log_file_name = log.txt
+
+```
 
 ## Result (of Cefra Dataset)
 #### Pearson Correlation Coefficient of each site
