@@ -20,9 +20,9 @@ from utils.metric import pearson_correlation_by_class
 def train(opt, config, device, train_data, val_data):
 
     # run log dir setting
-    runs_dir, log_file_name = config['log']['runs_dir'], config['log']['log_file_name']
-    if not os.path.isdir(runs_dir): os.mkdir(runs_dir)
-    run_dir = increment_dir(runs_dir, opt.run_name)  #dir name for this run
+    overall_log_dir, log_file_name = config['log']['overall_log_dir'], config['log']['log_file_name']
+    if not os.path.isdir(overall_log_dir): os.mkdir(overall_log_dir)
+    run_dir = increment_dir(overall_log_dir, opt.log_name)  #dir name for this run
     os.mkdir(run_dir)
     weights_dir = run_dir + '/weights'
     os.mkdir(weights_dir)
@@ -55,7 +55,7 @@ def train(opt, config, device, train_data, val_data):
         opt.batch_size = 1
     
     # dataset and dataloader
-    loc = config['model']['loc'].split(',')
+    loc = config['model']['loc_name'].split(',')
     max_length = opt.max_length
     train_dataset = seqDataset(train_data['seqs'], train_data['labels'], loc, 
                                 one_hot = True, 
@@ -204,7 +204,7 @@ if __name__ == '__main__':
     parser.add_argument('--batch_size', type=int, default=8, help='total batch size')
     parser.add_argument('--lr', type=float, default=1e-4, help='learning rate')
     parser.add_argument('--max_length', type=int, default = 4000, help='pad and trim seq to a fixed length')
-    parser.add_argument('--run_name', type=str, help='name for this run')
+    parser.add_argument('--log_name', type=str, help='name for this run')
     parser.add_argument('--weights', type=str, help='load weights path')
     parser.add_argument('--fold', type=int, help='fold number(do not set if do not want), will use training data to run n-fold')
     parser.add_argument('--full_length', action="store_true", help='use full length to train (batch_size will set to 1)')
@@ -224,11 +224,11 @@ if __name__ == '__main__':
 
         kf = KFold(n_splits = opt.fold)
         fold = 0
-        base_name = opt.run_name
+        base_name = opt.log_name
         for train_idx , val_idx in kf.split(whole_data['seqs']):
             train_idx , val_idx= list(train_idx), list(val_idx)
             fold  = fold + 1
-            opt.run_name = f'{base_name}_fold{fold}'
+            opt.log_name = f'{base_name}_fold{fold}'
             fold_train_data = {'seqs' : [whole_data['seqs'][i] for i in train_idx], 'labels' : [whole_data['labels'][i] for i in train_idx]}
             fold_val_data = {'seqs' : [whole_data['seqs'][i] for i in val_idx], 'labels' : [whole_data['labels'][i] for i in val_idx]}
             train(opt, config, device, fold_train_data, fold_val_data)

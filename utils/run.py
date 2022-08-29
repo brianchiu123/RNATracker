@@ -3,7 +3,7 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read('cfg/settings.cfg')
-run_name_prefix = config['log']['run_name_prefix']
+log_dir_prefix = config['log']['log_dir_prefix']
 runs_dir = config['log']['runs_dir']
 
 # use for auto increase run number in runs folder
@@ -12,5 +12,5 @@ def increment_dir(dir = runs_dir, run_name = ""):
     if len(all_file) == 0:
         num = 0
     else:
-        num = max([int(i[:i.find('_') if '_' in i else None].split(run_name_prefix)[1]) for i in all_file]) + 1
-    return dir + '/' + run_name_prefix + str(num) + ( '_' + run_name if run_name else "")
+        num = max([int(i[:i.find('_') if '_' in i else None].split(log_dir_prefix)[1]) for i in all_file]) + 1
+    return dir + '/' + log_dir_prefix + str(num) + ( '_' + run_name if run_name else "")
