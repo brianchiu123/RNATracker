@@ -1,4 +1,4 @@
-PyTorch re-implementation of RNATracker [1] model.
+#### PyTorch re-implementation of RNATracker [1] model (non-official).
 
 RNATracker aims to predict each RNA sequence belongs to which site in a cell (Cytosol, Nuclear ...)
 
