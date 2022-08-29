@@ -24,18 +24,18 @@ RNATracker aims to predict each RNA sequence belongs to which site in a cell (Cy
 ```
 RNATracker_model(
   (conv_block1): Sequential(
-    (0): Conv1d(4, 32, kernel_size=(10,), stride=(1,), bias=False)
+    (0): Conv1d(in_channels=4, out_channels=32, kernel_size=(10,), stride=(1,), bias=False)
     (1): ReLU()
     (2): MaxPool1d(kernel_size=3, stride=3, padding=0, dilation=1, ceil_mode=False)
     (3): Dropout(p=0.25, inplace=False)
   )
   (conv_block2): Sequential(
-    (0): Conv1d(32, 32, kernel_size=(10,), stride=(1,), bias=False)
+    (0): Conv1d(in_channels=32, out_channels=32, kernel_size=(10,), stride=(1,), bias=False)
     (1): ReLU()
     (2): MaxPool1d(kernel_size=3, stride=3, padding=0, dilation=1, ceil_mode=False)
     (3): Dropout(p=0.25, inplace=False)
   )
-  (gru): GRU(32, 32, batch_first=True, bidirectional=True)
+  (gru): GRU(input_size=32, hidden_size=32, batch_first=True, bidirectional=True)
   (attention): Attention(
     (attention_w): Linear(in_features=64, out_features=50, bias=True)
     (tanh): Tanh()
