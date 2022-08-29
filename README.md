@@ -7,6 +7,8 @@ RNATracker aims to predict each RNA sequence belongs to which site in a cell (Cy
 <img width="422" alt="Screen Shot 2022-08-29 at 11 14 26 AM" src="https://user-images.githubusercontent.com/75982405/187116375-66cb2ef1-6f0b-4a02-80ec-7c36211081e1.png">
 
 
+<br>
+
 ## Model Architeture
 #### Overview
 
@@ -46,6 +48,10 @@ RNATracker_model(
 )
 ```
 
+
+
+<br>
+
 ## Usage
 ``` 
 usage: train.py [-h] [--data DATA] [--epochs EPOCHS] [--batch_size BATCH_SIZE] [--lr LR] [--max_length MAX_LENGTH] [--log_name LOG_NAME]
@@ -69,6 +75,8 @@ optional arguments:
 - you can restore and keep on last training by giving `weights`, epoch will start from the last time.
 - you can perform k-fold cross validation by setting `fold` option.
 
+<br>
+
 #### config file
 
 in `config/setting.cfg`, there's some conventional option can be set. Include all log file name, folder name...
@@ -87,6 +95,9 @@ log_file_name = log.txt
 
 ```
 
+
+<br>
+
 ## Result (of Cefra Dataset)
 #### Pearson Correlation Coefficient of each site
 
@@ -96,6 +107,7 @@ log_file_name = log.txt
 ![螢幕快照 2022-08-29 下午2 28 20](https://user-images.githubusercontent.com/75982405/187137139-a8ac06b4-ff5c-4d00-8a33-84d0898289d5.png)![螢幕快照 2022-08-29 下午2 28 33](https://user-images.githubusercontent.com/75982405/187137151-0cfe4d97-e375-42d0-bd02-3613e1ec093c.png)
 
 
+<br>
 
 ## Reference
 [1] Yan Z, Lécuyer E, Blanchette M. Prediction of mRNA subcellular localization using deep recurrent neural networks. Bioinformatics. 2019 Jul 15;35(14):i333-i342. doi: 10.1093/bioinformatics/btz337. PMID: 31510698; PMCID: PMC6612824.
