@@ -8,7 +8,12 @@ RNATracker aims to predict each RNA sequence belongs to which site in a cell (Cy
 ## Model Architeture
 #### Overview
 
-<img width="420" alt="Screen Shot 2022-08-29 at 11 20 35 AM" src="https://user-images.githubusercontent.com/75982405/187116478-03630088-a73c-4b79-9b19-9138286ebe0e.png">
+
+
+|Overall Model                  |Illustartion of Attention Layer              |
+|-------------------------------|-----------------------------|
+| <img width="420" alt="Screen Shot 2022-08-29 at 11 20 35 AM" src="https://user-images.githubusercontent.com/75982405/187116478-03630088-a73c-4b79-9b19-9138286ebe0e.png">|<img width="312" alt="Screen Shot 2022-08-29 at 11 47 25 AM" src="https://user-images.githubusercontent.com/75982405/187119145-c18bea65-8094-4a6c-9397-4e26b6eeb8ba.png">|
+
 
 #### Datail of Each Layer
 
