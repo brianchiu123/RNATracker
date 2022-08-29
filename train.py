@@ -12,13 +12,12 @@ from sklearn.model_selection import KFold, train_test_split
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
-from utils.data import load_cefra, load_cefra_with_diff_type, parse_seq_mode, pad_collate, seqDataset
+from utils.data import load_cefra, pad_collate, seqDataset
 from utils.run import increment_dir
 from models.model import RNATracker_model
 from utils.metric import pearson_correlation_by_class
 
 def train(opt, config, device, train_data, val_data):
-    scaler_num = len(opt.seq_mode.split('_'))
 
     # run log dir setting
     runs_dir, log_file_name = config['log']['runs_dir'], config['log']['log_file_name']
@@ -35,18 +34,14 @@ def train(opt, config, device, train_data, val_data):
     train_data_desc = f'[ Using training data in \"{opt.train_data}\"] \nTraining size : {train_size}'
     val_size = len(val_data['seqs'])
     val_data_desc = f'[ Using validataion data in \"{opt.val_data}\"] \nValidataion size : {val_size}\n'
-    seq_mode_desc = f'Seq mode : {opt.seq_mode}'
-    length_desc = f'trim and pad to length {opt.max_length}*{scaler_num}\n' if opt.pad_before_append else f'trim and pad to length {opt.max_length}\n'
+    length_desc = f'trim and pad to length {opt.max_length}\n'
     print(train_data_desc)
     print(val_data_desc)
-    print(seq_mode_desc)
     print(length_desc)
     with open(log_file_path, 'a+') as f:
         f.write(train_data_desc)
         f.write('\n')
         f.write(val_data_desc)
-        f.write('\n')
-        f.write(seq_mode_desc)
         f.write('\n')
         f.write(length_desc)
         f.write('\n')
@@ -57,38 +52,32 @@ def train(opt, config, device, train_data, val_data):
     
     # dataset and dataloader
     loc = config['model']['loc'].split(',')
-    onehot = False if opt.seq_mode == 'protein_pssm' else True
-    max_length = opt.max_length * scaler_num if opt.pad_before_append else opt.max_length
+    max_length = opt.max_length
     train_dataset = seqDataset(train_data['seqs'], train_data['labels'], loc, 
-                                one_hot = onehot, 
+                                one_hot = True, 
                                 max_length = max_length,
                                 full_length = opt.full_length)
     val_dataset = seqDataset(val_data['seqs'], val_data['labels'], loc, 
-                                one_hot = onehot,
+                                one_hot = True,
                                 max_length = max_length,
                                 full_length = opt.full_length)
     train_loader = DataLoader(dataset = train_dataset,
                           batch_size = opt.batch_size,
                           shuffle = True,
                           collate_fn = pad_collate)
-
     val_loader = DataLoader(dataset = val_dataset,
                             batch_size = opt.batch_size,
                             shuffle = False,
                             collate_fn = pad_collate)
 
-
     # model definition
-    num_classes, rnn_hidden_size = config['model'].getint('num_classes'), config['model'].getint('rnn_hidden_size')
-    input_size = 20 if opt.seq_mode == 'protein_pssm' else 4
-    model = RNATracker_model(input_size = input_size, 
-                            output_size = num_classes,
-                            device = device).to(device)
-    criterion = nn.KLDivLoss(reduction='sum') #sum, mean, batchmean
+    num_classes = config['model'].getint('num_classes')
+    input_channel = 4  # one-hot of ATCG
+    model = RNATracker_model(input_channel = input_channel, output_size = num_classes,).to(device)
+    criterion = nn.KLDivLoss(reduction='sum')
     optimizer = optim.Adam(model.parameters(), lr=opt.lr)
     start_epoch = 1
 
-    
     # load weights and optimizar
     if opt.weights:
         ckpt = torch.load(opt.weights, map_location = device)
@@ -206,7 +195,7 @@ if __name__ == '__main__':
 
     # parse script options
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data', type=str, default='data/Cefra/cefra_95_train.fa', help='training data path')
+    parser.add_argument('--data', type=str, default='data/Cefra/cefra.fa', help='RNA data path')
     parser.add_argument('--epochs', type=int, default=100, help='num of epochs')
     parser.add_argument('--batch_size', type=int, default=8, help='total batch size')
     parser.add_argument('--lr', type=float, default=1e-4, help='learning rate')
@@ -241,5 +230,5 @@ if __name__ == '__main__':
             train(opt, config, device, fold_train_data, fold_val_data)
     else:
         whole_data = load_cefra(opt.data)
-        train_data, val_data = train_test_split(whole_data,test_size=0.2, random_state=1)
-        train(opt, config, device, train_data, val_data)
+        train_seqs, train_labels, val_seqs, val_labels = train_test_split(whole_data['seqs'],whole_data['labels'],test_size=0.2, random_state=1)
+        train(opt, config, device, {"seqs" : train_seqs, "labels" : train_labels}, {"seqs" : val_seqs, "labels" : val_labels})

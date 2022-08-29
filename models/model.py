@@ -39,12 +39,11 @@ class Attention(nn.Module):
 
 
 class RNATracker_model(nn.Module):
-    def __init__(self, input_size, 
-                        output_size,
-                        device):
+    def __init__(self, input_channel, 
+                        output_size):
         
         super().__init__()
-        self.input_size = input_size
+        self.input_channel = input_channel
         self.output_size = output_size
         self.rnn_hidden_size = 32
         self.bidirectional = True
@@ -53,31 +52,34 @@ class RNATracker_model(nn.Module):
         
         # define layers
         self.conv_block1 = nn.Sequential(
-            nn.Conv1d(in_channels = self.input_size, 
-                              out_channels = 32, 
-                              kernel_size = 10, 
-                              stride = 1,
-                              bias = False),
+            nn.Conv1d(
+                in_channels = self.input_channel, 
+                out_channels = 32, 
+                kernel_size = 10, 
+                stride = 1,
+                bias = False),
             nn.ReLU(),
             nn.MaxPool1d(3, stride=3),
             nn.Dropout(0.25)
         )
         self.conv_block2 = nn.Sequential(
-            nn.Conv1d(in_channels = 32, 
-                              out_channels = 32, 
-                              kernel_size = 10, 
-                              stride = 1,
-                              bias = False),
+            nn.Conv1d(
+                in_channels = 32, 
+                out_channels = 32, 
+                kernel_size = 10, 
+                stride = 1,
+                bias = False),
             nn.ReLU(),
             nn.MaxPool1d(3, stride=3),
             nn.Dropout(0.25)
         )
         
-        self.gru = nn.GRU(32, 
-                          self.rnn_hidden_size, 
-                          num_layers = 1, 
-                          batch_first = True, 
-                          bidirectional = self.bidirectional)
+        self.gru = nn.GRU(
+                        32, 
+                        self.rnn_hidden_size, 
+                        num_layers = 1, 
+                        batch_first = True, 
+                        bidirectional = self.bidirectional)
 
         self.attention = Attention(attention_size = 50,
                                     input_size = self.rnn_hidden_size * self.layer_size)
