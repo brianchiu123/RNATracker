@@ -4,10 +4,10 @@ import configparser
 config = configparser.ConfigParser()
 config.read('cfg/settings.cfg')
 log_dir_prefix = config['log']['log_dir_prefix']
-runs_dir = config['log']['runs_dir']
+overall_log_dir = config['log']['overall_log_dir']
 
 # use for auto increase run number in runs folder
-def increment_dir(dir = runs_dir, run_name = ""):
+def increment_dir(dir = overall_log_dir, run_name = ""):
     all_file = [i for i in os.listdir(dir) if not i == '.DS_Store']
     if len(all_file) == 0:
         num = 0
