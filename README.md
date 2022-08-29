@@ -68,6 +68,11 @@ optional arguments:
 #### Pearson Correlation Coefficient of each site
 
 #### Training / Validation loss 
+![螢幕快照 2022-08-29 下午2 28 12](https://user-images.githubusercontent.com/75982405/187137091-417bae00-49f0-4319-ab23-803d4ae7a581.png)
+
+![螢幕快照 2022-08-29 下午2 28 20](https://user-images.githubusercontent.com/75982405/187137139-a8ac06b4-ff5c-4d00-8a33-84d0898289d5.png)![螢幕快照 2022-08-29 下午2 28 33](https://user-images.githubusercontent.com/75982405/187137151-0cfe4d97-e375-42d0-bd02-3613e1ec093c.png)
+
+
 
 ## Reference
 [1] Yan Z, Lécuyer E, Blanchette M. Prediction of mRNA subcellular localization using deep recurrent neural networks. Bioinformatics. 2019 Jul 15;35(14):i333-i342. doi: 10.1093/bioinformatics/btz337. PMID: 31510698; PMCID: PMC6612824.
