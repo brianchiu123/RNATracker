@@ -9,34 +9,32 @@ from torch import nn
 
 from tqdm import tqdm
 
-from utils.data import pad_collate, PSSMDataset, load_cefra
-from models.model import PSLRNN_model
+from utils.data import pad_collate, seqDataset, load_cefra
+from models.model import RNATracker_model
 from utils.metric import pearson_correlation_by_class
 
 def test(opt, config, device, test_data, in_training = False):
 
     # dataset and dataloader
-    loc = config['model']['loc'].split(',')
-    test_dataset = PSSMDataset(test_data['seqs'], test_data['labels'], loc)
+    loc = config['model']['loc_name'].split(',')
+    test_dataset = seqDataset(test_data['seqs'], test_data['labels'], loc, 
+                                one_hot = True,
+                                max_length = opt.max_length,
+                                full_length = opt.full_length)
     test_loader = DataLoader(dataset = test_dataset,
                             batch_size = opt.batch_size,
                             shuffle = False,
                             collate_fn = pad_collate)
 
     # model definition
-    input_size, num_classes, rnn_hidden_size = config['model'].getint('input_size'), config['model'].getint('num_classes'), config['model'].getint('rnn_hidden_size')
-    model = PSLRNN_model(input_size = input_size, 
-                        output_size = num_classes, 
-                        rnn_hidden_size = rnn_hidden_size, 
-                        device = device).to(device)
-    criterion = nn.MSELoss()
+    num_classes = config['model'].getint('num_classes')
+    input_channel = 4  # one-hot of ATCG
+    model = RNATracker_model(input_channel = input_channel, output_size = num_classes,).to(device)
+    criterion = nn.KLDivLoss(reduction='sum')
 
-    # load weights and optimizar
-    if not opt.weights:
-        raise AttributeError
-    else:
-        ckpt = torch.load(opt.weights, map_location = device)
-        model.load_state_dict(ckpt['model'])
+    # load weights
+    ckpt = torch.load(opt.weights, map_location = device)
+    model.load_state_dict(ckpt['model'])
 
     # test 
     test_loss = 0
@@ -75,10 +73,10 @@ if __name__ == '__main__':
 
     # parse script options
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', type=str, help='load weights path')
-    parser.add_argument('--test_data', type=str, default='data/RNAloc', help='testing data path')
+    parser.add_argument('--weights', type=str, required=True, help='load weights path')
+    parser.add_argument('--test_data', type=str, required=True, help='testing data path')
+    parser.add_argument('--max_length', type=int, default = 4000, help='pad and trim seq to a fixed length')
     parser.add_argument('--batch_size', type=int, default=config['hyperparameters'].getint('batch_size'), help='total batch size')
-    parser.add_argument('--result_name', type=str, help='name for this result')
     opt = parser.parse_args()
 
     # device
