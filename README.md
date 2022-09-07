@@ -100,7 +100,7 @@ log_file_name = log.txt
 
 ## Result (of Cefra Dataset)
 
-training log is in `logs/exp0`
+training log is in `logs/exp0`, recorded in both plain text and tensorboard.
 
 #### Pearson Correlation Coefficient of each site
 |Site|PCC|
