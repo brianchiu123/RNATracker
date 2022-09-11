@@ -2,7 +2,7 @@
 
 
 #### Brief Intro of RNATracker
-RNATracker aims to predict each RNA sequence belongs to which site in a cell (Cytosol, Nuclear ...). It utilize a combination of CNN, RNN model with Attention Mechanism. Target label is not hard label, it's a vector represent the probability of being exist in a specific site. Thus, it's more like a regression task and the metric used here is Pearson Correlation Coefficient.
+RNATracker aims to predict each RNA sequence belongs to which site in a cell (Cytosol, Nuclear ...). It utilize a combination of CNN, RNN model with Attention Mechanism (self-attention). Target label is not hard label, it's a vector represent the probability of being exist in a specific site. Thus, it's more like a regression task and the metric used here is Pearson Correlation Coefficient.
 
 <img width="422" alt="Screen Shot 2022-08-29 at 11 14 26 AM" src="https://user-images.githubusercontent.com/75982405/187116375-66cb2ef1-6f0b-4a02-80ec-7c36211081e1.png">
 
