@@ -144,8 +144,8 @@ training log is in `logs/exp0`, recorded in both plain text and tensorboard.
 <br>
 
 ## Reference
-[1] Yan Z, Lécuyer E, Blanchette M. Prediction of mRNA subcellular localization using deep recurrent neural networks. Bioinformatics. 2019 Jul 15;35(14):i333-i342. doi: 10.1093/bioinformatics/btz337. PMID: 31510698; PMCID: PMC6612824.
-[1]RNALocate: a resource for RNA subcellular localizations. Nucleic Acids Res. 2017 Jan 4,Zhang T, Tan P, Wang L, Jin N, Li Y, Zhang L, Yang H, Hu Z, Zhang L, Hu C, Li C, Qian K, Zhang C, Huang Y, Li K, Lin H, Wang D. 
-[2]Live-cell mapping of organelle-associated RNAs via proximity biotinylation combined with protein-RNA crosslinking, eLife 2017;6, Pornchai Kaewsapsak, David Michael Shechner, William Mallard, John L Rinn, Alice Y Ting 
-[3]CeFra-seq reveals broad asymmetric mRNA and noncoding RNA distribution profiles in Drosophila and human cells. RNA. 2018 Jan ,Benoit Bouvrette LP, Cody NAL, Bergalet J, Lefebvre FA, Diot C, Wang X, Blanchette M, Lécuyer E. 
-[4]Atlas of Subcellular RNA Localization Revealed by APEX-Seq,Cell,Volume 178, Issue 2,2019 ,Furqan M. Fazal, Shuo Han, Kevin R. Parker, Pornchai Kaewsapsak, Jin Xu, Alistair N. Boettiger, Howard Y. Chang, Alice Y. Ting
+[1] Yan Z, Lécuyer E, Blanchette M. Prediction of mRNA subcellular localization using deep recurrent neural networks. Bioinformatics. 2019 Jul 15;35(14):i333-i342. doi: 10.1093/bioinformatics/btz337. PMID: 31510698; PMCID: PMC6612824.  
+[2]RNALocate: a resource for RNA subcellular localizations. Nucleic Acids Res. 2017 Jan 4,Zhang T, Tan P, Wang L, Jin N, Li Y, Zhang L, Yang H, Hu Z, Zhang L, Hu C, Li C, Qian K, Zhang C, Huang Y, Li K, Lin H, Wang D.  
+[3]Live-cell mapping of organelle-associated RNAs via proximity biotinylation combined with protein-RNA crosslinking, eLife 2017;6, Pornchai Kaewsapsak, David Michael Shechner, William Mallard, John L Rinn, Alice Y Ting.  
+[4]CeFra-seq reveals broad asymmetric mRNA and noncoding RNA distribution profiles in Drosophila and human cells. RNA. 2018 Jan ,Benoit Bouvrette LP, Cody NAL, Bergalet J, Lefebvre FA, Diot C, Wang X, Blanchette M, Lécuyer E.  
+[5]Atlas of Subcellular RNA Localization Revealed by APEX-Seq,Cell,Volume 178, Issue 2,2019 ,Furqan M. Fazal, Shuo Han, Kevin R. Parker, Pornchai Kaewsapsak, Jin Xu, Alistair N. Boettiger, Howard Y. Chang, Alice Y. Ting.  
